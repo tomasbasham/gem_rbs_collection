@@ -1,0 +1,14 @@
+module Rack
+  class Proxy
+    def initialize: (untyped? app, **untyped options) -> void
+    def rewrite_env: (Rack::env env) -> Rack::env
+
+    # The return typed of these methods is untyped because it depends on the
+    # HTTP response type. For example the return type may be
+    # `HttpStreamingResponse` or a `String`. These types don't share a common
+    # interface, so are duck typed by consumers.
+    def call: (Rack::env env) -> untyped
+    def perform_request: (Rack::env env) -> untyped
+  end
+end
+

@@ -1,0 +1,51 @@
+module Jekyll
+  interface _Context end
+
+  module Commands
+    class Serve
+      class Servlet
+        def self.prepend: (Module) -> void
+      end
+    end
+
+    class Command
+      def self.init_with_program: (untyped) -> void
+      def self.process_with_graceful_fail: (untyped, Hash[String, untyped], untyped) -> void
+      def self.configuration_from_options: (Hash[String, untyped]) -> Hash[String, untyped]
+    end
+  end
+
+  class Logger
+    def debug: (String topic, String? message) -> void
+    def info: (String topic, String? message) -> void
+    def warn: (String topic, String? message) -> void
+    def error: (String topic, String? message) -> void
+  end
+
+  module Hooks
+    def self.register: (Symbol, Symbol) { (Site) -> void } -> void
+  end
+
+  type options = Hash[String | Symbol, untyped]
+
+  class Site
+    def config: () -> options
+  end
+
+  module Tags
+    class IncludeTag
+      def parse_params: (untyped context) -> Hash[String, untyped]
+      def render: (Liquid::Context context) ?{ () -> String } -> String
+      def syntax_example: () -> String
+      def validate_file_name: (String file) -> void
+    end
+  end
+
+  module Filters
+    module URLFilters
+      def relative_url: (String url) -> String
+    end
+  end
+
+  def self.logger: () -> Logger
+end

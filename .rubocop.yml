@@ -1,0 +1,21 @@
+---
+plugins:
+- rubocop-on-rbs
+- rubocop-rake
+
+AllCops:
+  DisabledByDefault: true
+  NewCops: disable
+  TargetRubyVersion: 3.2
+
+RBS:
+  Enabled: true
+
+RBS/Layout:
+  Enabled: false
+
+RBS/Lint:
+  Enabled: false
+
+RBS/Style:
+  Enabled: false

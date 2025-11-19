@@ -1,0 +1,15 @@
+module Liquid
+  class Context
+    attr_reader registers: Registers
+  end
+
+  class Registers
+    def []=: (Symbol key, untyped value) -> void
+    def []: (Symbol key) -> untyped
+  end
+
+  module Template
+    def self.register_filter: (Module) -> void
+    def self.register_tag: (String name, Class class) -> void
+  end
+end
